@@ -22,12 +22,11 @@ exports.createUser = async (req, res) => {
     const newReferredUser = req.body.ReferredUser;
     // console.log(req.body.ReferredUser)
     const refUser = await usersMod.findOne({ Name: newReferredUser });
-    await usersMod.findOneAndUpdate(
+    await usersMod.updateOne(
       refUser,
       { $inc: { TotalEarnings: 10 } },
       {
         new: true,
-        runValidators: true,
       }
     );
 
